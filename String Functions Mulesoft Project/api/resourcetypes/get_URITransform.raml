@@ -1,0 +1,11 @@
+#%RAML 1.0 ResourceType
+description: Prepare a string to be taken in an URI.
+get:
+  description: Prepare a string to be taken in an URI.
+  responses: 
+    200:
+      body:
+        application/json:
+          schema: !include ../schemas/get_transformToURI.JSON
+          example: !include ../examples/200-get_transformToURI.JSON
+          

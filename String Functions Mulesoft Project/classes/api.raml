@@ -1,0 +1,47 @@
+#%RAML 1.0
+baseUri: https://mocksvc.mulesoft.com/mocks/9c069d40-d978-42eb-98ff-aa87a5414b5d # 
+title: StringFuncs
+version: 1.0
+protocols: 
+  - HTTP
+documentation: 
+  - title: stringCompression
+    content: Will check to see if all characater in a string are unqiue, will replace spaces with "%20", and will compress the string (IE aabb dd  ggghgg becomes a2b2%20d2%20%20g3h1g2)
+
+resourceTypes: 
+  get_compression : !include resourcetypes/get_compression.raml
+  get_URITransform : !include resourcetypes/get_URITransform.raml
+  get_uniqueString : !include resourcetypes/get_uniqueString.raml
+
+/stringFuncs:
+  /compression:
+    /{inputString}:
+      type: get_compression
+      description: 
+      uriParameters: 
+        inputString:
+          type: string
+          required: true
+          example: "aavvvbbcv"
+
+  /URIReady:
+    /{inputString}:
+      type: get_URITransform
+      description: 
+      uriParameters: 
+        inputString: 
+          type: string
+          required: true
+          example: "aa  avvv bbcv"
+
+  /unique:
+    /{inputString}:
+      type: get_uniqueString
+      description: 
+      uriParameters: 
+        inputString:
+          type: string
+          required: true
+          example: "aaaaaaa"
+
+

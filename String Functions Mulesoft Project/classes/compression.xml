@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
+
+
+    <sub-flow name="compressionSubFlow">
+        <custom-transformer returnClass="java.lang.String" mimeType="application/java" class="com.stringfunctions.InvokeCompressURI" doc:name="Java"/>
+        <logger message="#[payload]" level="DEBUG" doc:name="Logger"/>
+        <dw:transform-message doc:name="Transform Message" metadata:id="e6ecaa3b-385a-47d0-b161-f0cedfdf0e48">
+            <dw:input-payload mimeType="application/java"/>
+            <dw:input-variable variableName="String"/>
+            <dw:input-variable variableName="inputString"/>
+            <dw:input-variable doc:sample="sample_data\Map.dwl" variableName="uncompressedString"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json 
+---
+{
+	stringFuncsRS: {
+		originalString: log(flowVars.inputString),
+		compressedString: log(payload) when (sizeOf payload) < (sizeOf flowVars.inputString) otherwise  log("ERROR: Input string is smaller then output string! Input string was: " ++ flowVars.inputString)
+	}
+}
+]]></dw:set-payload>
+        </dw:transform-message>
+        <logger message="#[payload]" level="DEBUG" doc:name="Logger"/>
+    </sub-flow>
+
+
+
+</mule>

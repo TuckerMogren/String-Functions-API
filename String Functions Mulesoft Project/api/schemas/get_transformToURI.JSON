@@ -1,0 +1,32 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "stringFuncsRS": {
+      "$id": "/properties/stringFuncsRS",
+      "type": "object",
+      "properties": {
+        "originalString": {
+          "$id": "/properties/stringFuncsRS/properties/originalString",
+          "type": "string",
+          "title": "The Originalstring Schema ",
+          "default": "",
+          "examples": [
+            "aa  avvv bbcv"
+          ]
+        },
+        "transformedString": {
+          "$id": "/properties/stringFuncsRS/properties/transformedString",
+          "type": "string",
+          "title": "The Transformedstring Schema ",
+          "default": "",
+          "examples": [
+            "aa%20%20avvv%20bbcv"
+          ]
+        }
+      }
+    }
+  }
+}

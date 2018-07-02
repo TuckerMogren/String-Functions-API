@@ -1,0 +1,11 @@
+#%RAML 1.0 ResourceType
+description: Preform actions on a string taken via URI
+get:
+  description: Compression a string, replace spaces, and check for uniqueness
+  responses: 
+    200:
+      body:
+        application/json:
+          schema: !include ../schemas/get_compression.JSON
+          example: !include ../examples/200-get_compression.JSON
+          

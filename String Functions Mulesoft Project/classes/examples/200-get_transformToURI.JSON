@@ -1,0 +1,6 @@
+{
+  "stringFuncsRS" : {
+      "originalString" : "aa  avvv bbcv",
+      "transformedString" : "aa%20%20avvv%20bbcv"
+  }
+}

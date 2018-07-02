@@ -1,0 +1,13 @@
+#%RAML 1.0 ResourceType
+description: Determines if a string is unique
+get:
+  description: Will determine if a string contains unqiue characters
+  responses: 
+    200:
+      body:
+        application/json:
+          schema: !include ../schemas/get_uniqueString.JSON
+          example: !include ../examples/200-get_uniqueString.JSON
+          
+
+          
